@@ -42,3 +42,6 @@ Thumbs.db
 # custom
 *.db
 Logs/
+
+# git remote add origin https://github.com/crixo/woa-core2.0.git
+# git push -u origin master
