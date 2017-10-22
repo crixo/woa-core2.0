@@ -1,0 +1,33 @@
+﻿@model Woa.Models.Paziente
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<h2>Details</h2>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+<div id="pazienteDetails"></div>
+<script> 
+    $(document).ready(
+        $.get('@Url.Action("DetailsPartial", "Pazienti")', {id : @Model.ID}, function(content){
+                $("#pazienteDetails").html(content);
+            })
+	);
+</script>
+                </div>
+                <div class="col-md-4">
+<h4>Anamnesi Remote</h4>
+                </div>
+                <div class="col-md-4">
+<h4>Consulti</h4>			
+                </div>
+            </div>
+        </div>
+
+
+

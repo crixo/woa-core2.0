@@ -33,7 +33,7 @@ namespace Woa.Models
 
         [Column("data_nascita")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = false)]
         public DateTime DataDiNascita { get; set; }
 
         public Paziente()
