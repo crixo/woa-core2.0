@@ -18,8 +18,9 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Views\Pazienti\" />
     <Folder Include="Tools\" />
+    <Folder Include="Views\AnamnesiRemote\" />
+    <Folder Include="Views\Pazienti\Components\" />
     <Folder Include="Views\Utility\" />
   </ItemGroup>
 </Project>
