@@ -1,5 +1,5 @@
 ﻿docker build -t woa-core2.0-mvc .
-docker run -it --rm -p 8000:80 --name woa-core2.0-mvc_sample woa-core2.0-mvc
+docker run -it --rm -p 8000:80 -v C:/Temp/woa:/data -v C:/Temp/woa/Logs:/Logs --name woa-core2.0-mvc_sample woa-core2.0-mvc
 
 http://www.techietown.info/2017/02/copy-docker-images-another-host/
 Use the following command to see the image ID
@@ -19,3 +19,11 @@ To load this image to Docker on Destination Host
 Run the following command
 
 docker load < /home/myimage-1.tar
+
+
+###
+docker cp <container>:/Logs/woa-20171026.txt C:/Temp/woa-20171026.txt
+docker cp woa-core2.0-mvc_sample:/Logs/woa-20171026.txt C:/Temp/woa-20171026.txt
+
+##
+PowerShell $Env:ASPNETCORE_ENVIRONMENT = "Development"

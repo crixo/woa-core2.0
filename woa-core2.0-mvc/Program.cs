@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
+using System;
+using System.IO;
 
 namespace Woa
 {
@@ -16,13 +12,47 @@ namespace Woa
     {
         public static void Main(string[] args)
         {
+            //https://mitchelsellers.com/blogs/2017/10/09/real-world-aspnet-core-logging-configuration
+            ////Build Config
+            var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())//ContentRootPath
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{currentEnv}.json", optional: true)
+                .AddEnvironmentVariables()
+                .Build();
+            
+            ////Configure logger
+            //Log.Logger = new LoggerConfiguration()
+            //    .ReadFrom.Configuration(configuration)
+            //    .CreateLogger();
+
+            //try
+            //{
+            //    Log.Information("Starting web host");
+            //    BuildWebHost(args).Run();
+            //    return 0;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Fatal(ex, "Web Host terminated unexpectedly");
+            //    return 1;
+            //}
+            //finally
+            //{
+            //    Log.CloseAndFlush();
+            //}
+
+            //https://github.com/serilog/serilog-settings-configuration
             Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
             .Enrich.FromLogContext()
-                .WriteTo.RollingFile("../Logs/woa-{Date}.txt")
+                .WriteTo.RollingFile(configuration["rollingFileFolder"] + "/woa-{Date}.txt")
+                //.WriteTo.RollingFile("../Logs/woa-{Date}.txt")
             .CreateLogger();
-            
+
+
             BuildWebHost(args).Run();
         }
 
