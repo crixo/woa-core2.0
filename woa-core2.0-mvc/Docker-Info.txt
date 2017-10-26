@@ -1,0 +1,21 @@
+﻿docker build -t woa-core2.0-mvc .
+docker run -it --rm -p 8000:80 --name woa-core2.0-mvc_sample woa-core2.0-mvc
+
+http://www.techietown.info/2017/02/copy-docker-images-another-host/
+Use the following command to see the image ID
+
+docker images
+
+To save one image
+
+docker save myimage-1 > /home/myimage-1.tar
+
+This command will save the image to tar archive /home/myimage-1.tar
+
+Now we can copy this tar file to destination using any of the linux tools like “scp” or “rsync”.
+
+To load this image to Docker on Destination Host 
+
+Run the following command
+
+docker load < /home/myimage-1.tar
