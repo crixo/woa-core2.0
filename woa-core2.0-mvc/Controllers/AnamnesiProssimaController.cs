@@ -24,9 +24,21 @@ namespace Woa.Controllers
             _logger = logger;
         }
 
-        public IActionResult Create(int pazienteId, int consultoId)
+        public async Task<IActionResult> Create(int? consultoId)
         {
-            var model = new AnamnesiProssima {PazienteId=pazienteId, ConsultoId=consultoId};
+            if (consultoId == null)
+            {
+                return NotFound();
+            }
+
+            var entity = await _context.Consulti
+                                       .SingleOrDefaultAsync(m => m.ID == consultoId);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            var model = new AnamnesiProssima {PazienteId=entity.PazienteId, ConsultoId=consultoId.Value};
             return View();
         }
 
@@ -53,17 +65,15 @@ namespace Woa.Controllers
             return View(anamnesi);
         }
 
-        public async Task<IActionResult> Edit(int? pazienteId, int? consultoId)
+        public async Task<IActionResult> Edit(int? consultoId)
         {
-            if (pazienteId == null || consultoId == null)
+            if (consultoId == null)
             {
                 return NotFound();
             }
 
             var entity = await _context.AnamnesiProssime
-                                       .SingleOrDefaultAsync(
-                                           m => m.PazienteId==pazienteId
-                                                && m.ConsultoId==consultoId);
+                                       .SingleOrDefaultAsync(m=>m.ConsultoId==consultoId);
             if (entity == null)
             {
                 return NotFound();
@@ -77,16 +87,15 @@ namespace Woa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? pazienteId, int? consultoId)
+        public async Task<IActionResult> EditPost(int? consultoId)
         {
-            if (pazienteId == null || consultoId == null)
+            if (consultoId == null)
             {
                 return NotFound();
             }
             var modelToUpdate = await _context.AnamnesiProssime
                             .SingleOrDefaultAsync(
-                                m => m.PazienteId == pazienteId
-                                     && m.ConsultoId == consultoId);
+                                m => m.ConsultoId == consultoId);
             if (await TryUpdateModelAsync<AnamnesiProssima>(
                     modelToUpdate,
                     "",

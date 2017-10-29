@@ -13,35 +13,38 @@ using Woa.Models;
 
 namespace Woa.Controllers
 {
-    public class ConsultiController : Controller
+    public class TrattamentiController : Controller
     {
         private readonly WoaContext _context;
-        private readonly ILogger<ConsultiController> _logger;
+        private readonly ILogger<TrattamentiController> _logger;
 
-        public ConsultiController(WoaContext context, ILogger<ConsultiController> logger)
+        public TrattamentiController(WoaContext context, ILogger<TrattamentiController> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index(int pazienteId)
+        public async Task<IActionResult> Create(int? consultoId)
         {
-            var list = _context.Consulti
-                               .Where(x => x.PazienteId == pazienteId)
-                               .AsNoTracking()
-                               .ToListAsync();
-            return View(list);
-        }
+            if (consultoId == null)
+            {
+                return NotFound();
+            }
 
-        public IActionResult Create(int pazienteId)
-        {
-            var model = new Consulto { PazienteId = pazienteId};
-            return View(model);
+            var entity = await _context.Consulti
+                                       .SingleOrDefaultAsync(m => m.ID == consultoId);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            var model = new Esame { PazienteId = entity.PazienteId, ConsultoId = consultoId.Value };
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Consulto model)
+        public async Task<IActionResult> Create(Trattamento model)
         {
             try
             {
@@ -49,33 +52,17 @@ namespace Woa.Controllers
                 {
                     _context.Add(model);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Details", "Pazienti", new {id=model.PazienteId});
+                    return RedirectToAction("Details", "Consulti", new { id = model.ConsultoId });
                 }
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogError(ex, "Consulto creation failed");
+                _logger.LogError(ex, "Trattamento creation failed");
                 ModelState.AddModelError("", "Unable to save changes. " +
                     "Try again, and if the problem persists " +
                     "see your system administrator.");
             }
             return View(model);
-        }
-
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var entity = await _context.Consulti.SingleOrDefaultAsync(m => m.ID == id);
-            if (entity == null)
-            {
-                return NotFound();
-            }
-
-            return View(entity);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -85,11 +72,13 @@ namespace Woa.Controllers
                 return NotFound();
             }
 
-            var entity = await _context.Consulti.SingleOrDefaultAsync(m => m.ID == id);
+            var entity = await _context.Trattamenti
+                                       .SingleOrDefaultAsync(m => m.ID == id);
             if (entity == null)
             {
                 return NotFound();
             }
+
 
             return View(entity);
         }
@@ -104,20 +93,21 @@ namespace Woa.Controllers
             {
                 return NotFound();
             }
-            var modelToUpdate = await _context.Consulti.SingleOrDefaultAsync(s => s.ID == id);
-            if (await TryUpdateModelAsync<Consulto>(
-                    modelToUpdate, 
-                    "", 
-                    s=>s.Data, s=>s.ProblemaIniziale))
+            var modelToUpdate = await _context.Esami
+                                       .SingleOrDefaultAsync(m => m.ID == id);
+            if (await TryUpdateModelAsync<Esame>(
+                    modelToUpdate,
+                    "",
+                    s => s.Data, s => s.Descrizione))
             {
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Details", "Pazienti", new { id = modelToUpdate.PazienteId });
+                    return RedirectToAction("Details", "Consulti", new { id = modelToUpdate.ConsultoId });
                 }
                 catch (DbUpdateException ex)
                 {
-                    _logger.LogError(ex, "Consulto update failed");
+                    _logger.LogError(ex, "Trattamento update failed");
                     ModelState.AddModelError("", "Unable to save changes. " +
                         "Try again, and if the problem persists, " +
                         "see your system administrator.");

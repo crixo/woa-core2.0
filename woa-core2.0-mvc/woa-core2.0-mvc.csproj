@@ -24,9 +24,15 @@
     <Folder Include="Views\Shared\Components\Consulti\" />
     <Folder Include="Views\Consulti\" />
     <Folder Include="Views\Shared\Components\Paziente\" />
-    <Folder Include="Views\Consulti\Components\" />
-    <Folder Include="Views\Consulti\Components\AnamnesiProssima\" />
     <Folder Include="Views\AnamnesiProssima\" />
     <Folder Include="TagHelpers\" />
+    <Folder Include="Views\Esami\" />
+    <Folder Include="Views\Trattamenti\" />
+    <Folder Include="Views\Valutazioni\" />
+    <Folder Include="Views\Shared\Components\Esami\" />
+    <Folder Include="Views\Shared\Components\Consulto\" />
+    <Folder Include="Views\Shared\Components\AnamnesiProssima\" />
+    <Folder Include="Views\Shared\Components\Trattamenti\" />
+    <Folder Include="Views\Shared\Components\Valutazioni\" />
   </ItemGroup>
 </Project>

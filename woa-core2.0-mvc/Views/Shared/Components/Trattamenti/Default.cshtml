@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Woa.Models.Trattamento>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Trattamenti</h4>
+    </div>
+    <div class="panel-body">
+        <div condition="!@Model.Any()">
+        	Nessuna trattamento per questo consulto
+        </div>
+        <div condition="@Model.Any()">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <span>Data</span>
+                        </th>
+                        <th>
+                            <span>Descrizione</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.Data)
+                            </td>		
+                            <td>
+                                @Html.DisplayFor(model => item.Descrizione)
+                            </td>
+                            <td>
+                                <a asp-controller="Trattamenti" asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+	</div>
+    <div class="panel-footer">
+        <div>
+            <a asp-controller="Trattamenti" 
+                asp-action="Create" 
+                asp-route-consultoId="@ViewBag.ConsultoId">Create New</a>
+        </div>      
+    </div>   	
+</div>

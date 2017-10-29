@@ -10,12 +10,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Woa.ViewComponents
 {
-    [ViewComponent(Name = "AnamnesiProssima")]
-    public class AnamnesiProssimaComponent : ViewComponent
+    [ViewComponent(Name = "Trattamenti")]
+    public class TrattamentiComponent : ViewComponent
     {
         public WoaContext _context;
 
-        public AnamnesiProssimaComponent(WoaContext context)
+        public TrattamentiComponent(WoaContext context)
         {
             _context = context;
         }
@@ -23,11 +23,11 @@ namespace Woa.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(int consultoId)
         {
             ViewBag.ConsultoId = consultoId;
-            var entity = await _context.AnamnesiProssime
+            var list = await _context.Trattamenti
+                                       .Where(x => x.ConsultoId == consultoId)
                                         .AsNoTracking()
-                                       .SingleOrDefaultAsync(x => x.ConsultoId == consultoId);
-                               ;
-            return View(entity);
+                                       .ToListAsync();
+            return View(list);
         }
     }
 }

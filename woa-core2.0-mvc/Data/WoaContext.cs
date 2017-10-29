@@ -15,6 +15,10 @@ namespace Woa.Data
         public DbSet<TipoAnamnesi> TipoAnamnesi { get; set; }
         public DbSet<Consulto> Consulti { get; set; }
         public DbSet<AnamnesiProssima> AnamnesiProssime { get; set; }
+        public DbSet<Esame> Esami { get; set; }
+        public DbSet<TipoEsame> TipoEsami { get; set; }
+        public DbSet<Trattamento> Trattamenti { get; set; }
+        public DbSet<Valutazione> Valutazioni { get; set; }
 
 
 
@@ -28,6 +32,12 @@ namespace Woa.Data
 
             modelBuilder.Entity<Consulto>().ToTable("consulto");
             modelBuilder.Entity<AnamnesiProssima>().ToTable("anamnesi_prossima");
+
+            modelBuilder.Entity<Esame>().ToTable("esame");
+            modelBuilder.Entity<TipoEsame>().ToTable("lkp_esame");
+
+            modelBuilder.Entity<Trattamento>().ToTable("trattamento");
+            modelBuilder.Entity<Valutazione>().ToTable("valutazione");
         }
     }
 }

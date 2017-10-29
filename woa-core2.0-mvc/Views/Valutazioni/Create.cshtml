@@ -1,4 +1,4 @@
-﻿@model Woa.Models.AnamnesiRemota
+﻿@model Woa.Models.AnamnesiProssima
 
 @{
     ViewData["Title"] = "Create";
@@ -8,33 +8,32 @@
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Anamnesi Remota</h4>
+        <h4>Anamnesi Prossima</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="PazienteId" />
+        <input type="hidden" asp-for="ConsultoId" />
         <div class="form-group">
-            <label asp-for="Data" class="col-md-2 control-label"></label>
+            <label asp-for="Strutturale" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
+                <input asp-for="Strutturale" class="form-control" />
+                <span asp-validation-for="Strutturale" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="TipoId" class="col-md-2 control-label"></label>
+            <label asp-for="CranioSacrale" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="TipoId" class ="form-control" asp-items="ViewBag.TipiAnamnesi">
-                    <option value="">-- Select --</option>
-                </select>
-                <span asp-validation-for="TipoId" class="text-danger"></span>
+                <input asp-for="CranioSacrale" class="form-control" />
+                <span asp-validation-for="CranioSacrale" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Descrizione" class="col-md-2 control-label"></label>
+            <label asp-for="AkOrtodontica" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <textarea asp-for="Descrizione" rows="5" class="form-control" ></textarea>
-                <span asp-validation-for="Descrizione" class="text-danger"></span>
+                <input asp-for="AkOrtodontica" class="form-control" />
+                <span asp-validation-for="AkOrtodontica" class="text-danger"></span>
             </div>
-        </div>			
+        </div>		
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

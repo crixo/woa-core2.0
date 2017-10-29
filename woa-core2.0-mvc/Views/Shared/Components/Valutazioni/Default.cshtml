@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Woa.Models.Valutazione>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Valutazioni</h4>
+    </div>
+    <div class="panel-body">
+        <div condition="!@Model.Any()">
+        	Nessuna valutazione per questo consulto
+        </div>
+        <div condition="@Model.Any()">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <span>Strutturale</span>
+                        </th>
+            		    <th>
+                            <span>CranioSacrale</span>
+                        </th>	
+                        <th>
+                            <span>AkOrtodontica</span>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(model => item.Strutturale)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => item.CranioSacrale)
+                            </td>			
+                            <td>
+                                @Html.DisplayFor(model => item.AkOrtodontica)
+                            </td>
+                            <td>
+                                <a asp-controller="Valutazione" asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+	</div>
+    <div class="panel-footer">
+        <div>
+            <a asp-controller="Valutazione" 
+                asp-action="Create" 
+                asp-route-consultoId="@ViewBag.ConsultoId">Create New</a>
+        </div>      
+    </div>   	
+</div>

@@ -1,17 +1,17 @@
-﻿@model Woa.Models.AnamnesiRemota
+﻿@model Woa.Models.Esame
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
-<form asp-action="Create">
+<form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Anamnesi Remota</h4>
+        <h4>Esame</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="PazienteId" />
+        <input type="hidden" asp-for="ID" />
         <div class="form-group">
             <label asp-for="Data" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -22,7 +22,7 @@
         <div class="form-group">
             <label asp-for="TipoId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="TipoId" class ="form-control" asp-items="ViewBag.TipiAnamnesi">
+                <select asp-for="TipoId" class ="form-control" asp-items="ViewBag.TipiEsami">
                     <option value="">-- Select --</option>
                 </select>
                 <span asp-validation-for="TipoId" class="text-danger"></span>
@@ -31,13 +31,13 @@
         <div class="form-group">
             <label asp-for="Descrizione" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <textarea asp-for="Descrizione" rows="5" class="form-control" ></textarea>
+                <textarea asp-for="Descrizione" rows="5" class="form-control"></textarea>
                 <span asp-validation-for="Descrizione" class="text-danger"></span>
             </div>
-        </div>			
+        </div>       
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Edit" class="btn btn-default" />
             </div>
         </div>
     </div>
