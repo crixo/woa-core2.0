@@ -9,12 +9,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Woa.ViewComponents
 {
-    [ViewComponent(Name = "AnamnesiRemote")]
-    public class AnamnesiRemoteComponent : ViewComponent
+    [ViewComponent(Name = "Consulti")]
+    public class ConsultiComponent : ViewComponent
     {
         public WoaContext _context;
 
-        public AnamnesiRemoteComponent(WoaContext context)
+        public ConsultiComponent(WoaContext context)
         {
             _context = context;
         }
@@ -22,8 +22,7 @@ namespace Woa.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(int pazienteId)
         {
             ViewBag.PazienteId = pazienteId;
-            var list = await _context.AnamnesiRemote
-                               .Include(x=>x.Tipo)
+            var list = await _context.Consulti
                                .Where(x => x.PazienteId == pazienteId)
                                .OrderByDescending(x=>x.Data)
                                .AsNoTracking()

@@ -18,6 +18,11 @@ namespace Woa.Controllers
             _context = context;
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         // GET: /<controller>/
         public IActionResult ReplaceHtmlEncode()
         {

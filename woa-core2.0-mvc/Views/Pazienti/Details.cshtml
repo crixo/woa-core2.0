@@ -21,10 +21,10 @@
 </script>
                 </div>
                 <div class="col-md-4">
-                    @await Component.InvokeAsync("AnamnesiRemote", new { employeeId = Model.ID })
+                    @await Component.InvokeAsync("AnamnesiRemote", new { pazienteId = Model.ID })
                 </div>
                 <div class="col-md-4">
-<h4>Consulti</h4>			
+                    @await Component.InvokeAsync("Consulti", new { pazienteId = Model.ID })		
                 </div>
             </div>
         </div>

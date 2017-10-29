@@ -1,0 +1,93 @@
+﻿@model Woa.Models.AnamnesiProssima
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Anamnesi Prossima</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="PazienteId" />
+        <input type="hidden" asp-for="ConsultoId" />
+        <div class="form-group">
+            <label asp-for="PrimaVolta" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PrimaVolta" class="form-control" />
+                <span asp-validation-for="PrimaVolta" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tipologia" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Tipologia" class="form-control" />
+                <span asp-validation-for="Tipologia" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Localizzazione" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Localizzazione" class="form-control" />
+                <span asp-validation-for="Localizzazione" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Irradiazione" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Irradiazione" class="form-control" />
+                <span asp-validation-for="Irradiazione" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PeriodoInsorgenza" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PeriodoInsorgenza" class="form-control" />
+                <span asp-validation-for="PeriodoInsorgenza" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Durata" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Durata" class="form-control" />
+                <span asp-validation-for="Durata" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Familiarita" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Familiarita" class="form-control" />
+                <span asp-validation-for="Familiarita" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="AltreTerapie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="AltreTerapie" class="form-control" />
+                <span asp-validation-for="AltreTerapie" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Varie" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Varie" rows="5" cols="100"></textarea>
+                <span asp-validation-for="Varie" class="text-danger"></span>
+            </div>
+        </div>			
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

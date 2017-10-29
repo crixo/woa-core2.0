@@ -1,9 +1,47 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Woa.Models.AnamnesiRemota>
+
 @{
+    
 }
 
 <h4>Anamnesi Remote</h4>
 <hr />
-here
+<p>
+    <a asp-controller="AnamnesiRemote" asp-action="Create" asp-route-pazienteId="@ViewBag.PazienteId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <span>Data</span>
+            </th>
+            <th>
+                <span>Tipo</span>
+            </th>
+            <th>
+                <span>Descrizione</span>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Data)
+                </td>
+                <td>
+				    @Html.DisplayFor(model => item.Tipo.Descrizione)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Descrizione)
+                </td>
+                <td>
+                    <a asp-controller="AnamnesiRemote" asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

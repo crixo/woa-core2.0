@@ -20,7 +20,13 @@
     <Folder Include="Data\" />
     <Folder Include="Tools\" />
     <Folder Include="Views\AnamnesiRemote\" />
-    <Folder Include="Views\Pazienti\Components\" />
     <Folder Include="Views\Utility\" />
+    <Folder Include="Views\Shared\Components\Consulti\" />
+    <Folder Include="Views\Consulti\" />
+    <Folder Include="Views\Shared\Components\Paziente\" />
+    <Folder Include="Views\Consulti\Components\" />
+    <Folder Include="Views\Consulti\Components\AnamnesiProssima\" />
+    <Folder Include="Views\AnamnesiProssima\" />
+    <Folder Include="TagHelpers\" />
   </ItemGroup>
 </Project>

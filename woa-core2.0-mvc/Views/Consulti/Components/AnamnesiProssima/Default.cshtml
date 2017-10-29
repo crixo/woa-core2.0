@@ -1,0 +1,32 @@
+﻿@model Woa.Models.AnamnesiProssima
+
+<div>       
+    <h4>Anamnesi Prossima</h4>
+    <hr />
+	<a condition="@Model==null" 
+	    asp-controller="AnamnesiProssima" 
+	    asp-action="Create" 
+        asp-route-pazienteId="@ViewBag.PazienteId"
+	    asp-route-consultoId="@ViewBag.ConsultoId">Create</a>
+
+	<div condition="@Model!=null">
+        <dl class="dl-vertical">
+            <dt>
+                @Html.DisplayNameFor(model => model.PrimaVolta)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrimaVolta)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipologia)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tipologia)
+            </dd>
+        </dl>
+        <a asp-controller="AnamnesiProssima" 
+            asp-action="Edit" 
+            asp-route-pazienteId="@ViewBag.PazienteId"
+            asp-route-consultoId="@ViewBag.ConsultoId">Edit</a>
+	</div>
+</div>
