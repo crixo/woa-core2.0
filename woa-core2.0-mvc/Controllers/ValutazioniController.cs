@@ -39,7 +39,7 @@ namespace Woa.Controllers
             }
 
             var model = new Valutazione { PazienteId = entity.PazienteId, ConsultoId = consultoId.Value };
-            return View();
+            return View(model);
         }
 
         [HttpPost]

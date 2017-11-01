@@ -38,8 +38,8 @@ namespace Woa.Controllers
                 return NotFound();
             }
 
-            var model = new Esame { PazienteId = entity.PazienteId, ConsultoId = consultoId.Value };
-            return View();
+            var model = new Trattamento { PazienteId = entity.PazienteId, ConsultoId = consultoId.Value };
+            return View(model);
         }
 
         [HttpPost]
@@ -93,9 +93,9 @@ namespace Woa.Controllers
             {
                 return NotFound();
             }
-            var modelToUpdate = await _context.Esami
+            var modelToUpdate = await _context.Trattamenti
                                        .SingleOrDefaultAsync(m => m.ID == id);
-            if (await TryUpdateModelAsync<Esame>(
+            if (await TryUpdateModelAsync<Trattamento>(
                     modelToUpdate,
                     "",
                     s => s.Data, s => s.Descrizione))

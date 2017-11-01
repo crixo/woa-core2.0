@@ -39,7 +39,7 @@ namespace Woa.Controllers
             }
 
             var model = new AnamnesiProssima {PazienteId=entity.PazienteId, ConsultoId=consultoId.Value};
-            return View();
+            return View(model);
         }
 
         [HttpPost]

@@ -37,7 +37,7 @@
                                 @Html.DisplayFor(model => item.AkOrtodontica)
                             </td>
                             <td>
-                                <a asp-controller="Valutazione" asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                                <a asp-controller="Valutazioni" asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
                             </td>
                         </tr>
                     }
@@ -47,7 +47,7 @@
 	</div>
     <div class="panel-footer">
         <div>
-            <a asp-controller="Valutazione" 
+            <a asp-controller="Valutazioni" 
                 asp-action="Create" 
                 asp-route-consultoId="@ViewBag.ConsultoId">Create New</a>
         </div>      

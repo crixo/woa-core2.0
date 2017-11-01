@@ -44,7 +44,8 @@ namespace Woa.Controllers
             }
 
             var model = new Esame {PazienteId=entity.PazienteId, ConsultoId=consultoId.Value};
-            return View();
+            ViewData["TipiEsami"] = new SelectList(_context.TipoEsami, "ID", "Descrizione");
+            return View(model);
         }
 
         [HttpPost]
@@ -85,6 +86,7 @@ namespace Woa.Controllers
             }
 
 
+            ViewData["TipiEsami"] = new SelectList(_context.TipoEsami, "ID", "Descrizione", entity.TipoId);
             return View(entity);
         }
 
