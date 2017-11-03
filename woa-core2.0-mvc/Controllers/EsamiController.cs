@@ -71,6 +71,24 @@ namespace Woa.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var entity = await _context.Esami
+                                       .Include(x => x.Tipo)
+                                       .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            return View(entity);
+        }
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,7 +141,54 @@ namespace Woa.Controllers
             return View(modelToUpdate);
         }
 
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var student = await _context.Esami
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
 
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
+
+            return View(student);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var entity = await _context.Esami
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            try
+            {
+                _context.Esami.Remove(entity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
+        }
     }
 }

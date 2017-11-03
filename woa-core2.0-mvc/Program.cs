@@ -10,7 +10,7 @@ namespace Woa
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
             //https://mitchelsellers.com/blogs/2017/10/09/real-world-aspnet-core-logging-configuration
             ////Build Config
@@ -22,38 +22,38 @@ namespace Woa
                 .AddEnvironmentVariables()
                 .Build();
             
-            ////Configure logger
-            //Log.Logger = new LoggerConfiguration()
-            //    .ReadFrom.Configuration(configuration)
-            //    .CreateLogger();
+            //Configure logger
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
 
-            //try
-            //{
-            //    Log.Information("Starting web host");
-            //    BuildWebHost(args).Run();
-            //    return 0;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log.Fatal(ex, "Web Host terminated unexpectedly");
-            //    return 1;
-            //}
-            //finally
-            //{
-            //    Log.CloseAndFlush();
-            //}
+            try
+            {
+                Log.Information("Starting web host");
+                BuildWebHost(args).Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Web Host terminated unexpectedly");
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
 
             //https://github.com/serilog/serilog-settings-configuration
-            Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-            .Enrich.FromLogContext()
-                .WriteTo.RollingFile(configuration["rollingFileFolder"] + "/woa-{Date}.txt")
-                //.WriteTo.RollingFile("../Logs/woa-{Date}.txt")
-            .CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //.MinimumLevel.Debug()
+            //.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+            //.Enrich.FromLogContext()
+            //    .WriteTo.RollingFile(configuration["rollingFileFolder"] + "/woa-{Date}.txt")
+            //    //.WriteTo.RollingFile("../Logs/woa-{Date}.txt")
+            //.CreateLogger();
 
 
-            BuildWebHost(args).Run();
+            //BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
@@ -71,7 +71,7 @@ namespace Woa
                     //    logging.AddConsole();
                     //    logging.AddDebug();
                     //})   
-                .UseSerilog()
+                //.UseSerilog()
                 .UseStartup<Startup>()
                 .Build();
     }
