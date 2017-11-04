@@ -4,15 +4,12 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h3>v</h3>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>Anamnesi Prossima</h4>
-        <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="PazienteId" />
-        <input type="hidden" asp-for="ConsultoId" />
+        <input type="hidden" name="idConsulto" asp-for="ConsultoId" />
         <div class="form-group">
             <label asp-for="PrimaVolta" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -85,7 +82,7 @@
 </form>
 
 <div>
-    <a asp-controller="Consulti" asp-action="Details" asp-route-id="Model.ConsultoId">Back to List</a>
+    <a asp-controller="Consulti" asp-action="Details" asp-route-id="@Model.ConsultoId">Back to List</a>
 </div>
 
 @section Scripts {

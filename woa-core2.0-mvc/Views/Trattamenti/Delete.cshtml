@@ -1,10 +1,10 @@
-﻿@model Woa.Models.Esame
+﻿@model Woa.Models.Trattamento
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h3>Esame</h3>
+<h3>Trattamento</h3>
 
 <div>
     <p class="text-danger">@ViewData["ConcurrencyErrorMessage"]</p>
@@ -19,14 +19,8 @@
             @Html.DisplayFor(model => model.Data)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Tipo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Tipo.Descrizione)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Descrizione)
-        </dt>       
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Descrizione)
         </dd>

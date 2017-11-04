@@ -1,5 +1,6 @@
-﻿docker build -t woa-core2.0-mvc .
-docker run -it --rm -p 8000:80 -v C:/Temp/woa:/data -v C:/Temp/woa/Logs:/Logs --name woa-core2.0-mvc_sample woa-core2.0-mvc
+﻿docker build -t webprofessor/woa-core2.0-mvc:1.0 .
+docker run -it --rm -p 8000:80 -v C:/Temp/woa:/woa --name woa-core2.0-mvc_sample woa-core2.0-mvc
+docker run -p 8000:80 -v /Users/cristiano/Lavori/woa/woa-docker:/woa --restart=always --name woa-core2.0-mvc_sample woa-core2.0-mvc
 
 http://www.techietown.info/2017/02/copy-docker-images-another-host/
 Use the following command to see the image ID
@@ -27,3 +28,20 @@ docker cp woa-core2.0-mvc_sample:/Logs/woa-20171026.txt C:/Temp/woa-20171026.txt
 
 ##
 PowerShell $Env:ASPNETCORE_ENVIRONMENT = "Development"
+
+
+########
+List all exited containers
+docker ps -aq -f status=exited
+Remove stopped containers
+docker ps -aq --no-trunc | xargs docker rm
+This command will not remove running containers, only an error message will be printed out for each of them.
+
+Remove dangling/untagged images
+docker images -q --filter dangling=true | xargs docker rmi
+Remove containers created after a specific container
+docker ps --since a1bz3768ez7g -q | xargs docker rm
+Remove containers created before a specific container
+docker ps --before a1bz3768ez7g -q | xargs docker rm
+Use --rm for docker build
+Use --rm together with docker build to remove intermediary images during the build process.

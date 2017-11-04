@@ -1,29 +1,30 @@
-﻿@model Woa.Models.Esame
+﻿@model Woa.Models.Valutazione
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h3>Esame</h3>
-<div> 
+<h3>Valutazione</h3>
+
+<div>
     <dl class="dl-vertical">
         <dt>
-            @Html.DisplayNameFor(model => model.Data)
+            @Html.DisplayNameFor(model => model.Strutturale)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Data)
+            @Html.DisplayFor(model => model.Strutturale)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Tipo)
+            @Html.DisplayNameFor(model => model.CranioSacrale)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Tipo.Descrizione)
+            @Html.DisplayFor(model => model.CranioSacrale)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Descrizione)
+            @Html.DisplayNameFor(model => model.AkOrtodontica)
         </dt>       
         <dd>
-            @Html.DisplayFor(model => model.Descrizione)
+            @Html.DisplayFor(model => model.AkOrtodontica)
         </dd>
     </dl>
 </div>
@@ -32,6 +33,3 @@
     <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a> |
     <a asp-controller="Consulti" asp-action="Details" asp-route-id="@Model.ConsultoId">Back to List</a>
 </div>
-
-
-

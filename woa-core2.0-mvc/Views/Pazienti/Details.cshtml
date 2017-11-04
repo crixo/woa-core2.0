@@ -6,28 +6,21 @@
 
 
 
-<h2>Details</h2>
+<h3>@await Component.InvokeAsync("PazienteHeader", new { pazienteId = Model.ID })</h3>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-<div id="pazienteDetails"></div>
-<script> 
-    $(document).ready(
-        $.get('@Url.Action("DetailsPartial", "Pazienti")', {id : @Model.ID}, function(content){
-                $("#pazienteDetails").html(content);
-            })
-	);
-</script>
-                </div>
-                <div class="col-md-4">
-                    @await Component.InvokeAsync("AnamnesiRemote", new { pazienteId = Model.ID })
-                </div>
-                <div class="col-md-4">
-                    @await Component.InvokeAsync("Consulti", new { pazienteId = Model.ID })		
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            @await Component.InvokeAsync("PazienteAnagrafica", new { pazienteId = Model.ID })
         </div>
+        <div class="col-md-4">
+            @await Component.InvokeAsync("AnamnesiRemote", new { pazienteId = Model.ID })
+        </div>
+        <div class="col-md-4">
+            @await Component.InvokeAsync("Consulti", new { pazienteId = Model.ID })		
+        </div>
+    </div>
+</div>
 
 
 

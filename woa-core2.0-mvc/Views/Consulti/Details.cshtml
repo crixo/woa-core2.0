@@ -3,27 +3,21 @@
 @{
     ViewData["Title"] = "Details";
 }
+<h3>@await Component.InvokeAsync("PazienteHeader", new { pazienteId = Model.PazienteId })</h3>
 
-
-
-<h2>Consulto</h2>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    @await Component.InvokeAsync("Paziente", new { pazienteId = Model.PazienteId })
-                </div>
-                <div class="col-md-4">
-                    @await Component.InvokeAsync("Consulto", new { consultoId = Model.ID })
-			         @await Component.InvokeAsync("AnamnesiProssima", new { consultoId = Model.ID })
-                </div>
-                <div class="col-md-5">
-                    @await Component.InvokeAsync("Esami", new { consultoId = Model.ID }) 
-                    @await Component.InvokeAsync("Trattamenti", new { consultoId = Model.ID }) 
-                    @await Component.InvokeAsync("Valutazioni", new { consultoId = Model.ID }) 
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            @await Component.InvokeAsync("Consulto", new { consultoId = Model.ID })
+	         @await Component.InvokeAsync("AnamnesiProssima", new { consultoId = Model.ID })
         </div>
+        <div class="col-md-8">
+            @await Component.InvokeAsync("Esami", new { consultoId = Model.ID }) 
+            @await Component.InvokeAsync("Trattamenti", new { consultoId = Model.ID }) 
+            @await Component.InvokeAsync("Valutazioni", new { consultoId = Model.ID }) 
+        </div>
+    </div>
+</div>
 
 
 

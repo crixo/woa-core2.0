@@ -1,41 +1,44 @@
 ﻿@model IEnumerable<Woa.Models.Consulto>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Consulti</h4>
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <span>Data</span>
+                    </th>
+                    <th>
+                        <span>Problema Iniziale</span>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.ProblemaIniziale)
+                        </td>
+                        <td>
+                            <a asp-controller="Consulti" asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <p>
+            <a asp-controller="Consulti" asp-action="Create" asp-route-pazienteId="@ViewBag.PazienteId">Create New</a>
+        </p>            
+    </div>      
+</div>
 
-@{
-    
-}
-
-<h4>Consulti</h4>
-<hr />
-<p>
-    <a asp-controller="Consulti" asp-action="Create" asp-route-pazienteId="@ViewBag.PazienteId">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <span>Data</span>
-            </th>
-            <th>
-                <span>Problema Iniziale</span>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => item.Data)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.ProblemaIniziale)
-                </td>
-                <td>
-                    <a asp-controller="Consulti" asp-action="Details" asp-route-id="@item.ID">Details</a> 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 

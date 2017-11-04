@@ -1,0 +1,71 @@
+﻿@model Woa.Models.AnamnesiProssima
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3>Anamnesi Prossima</h3>
+
+<div>
+    <dl class="dl-vertical">
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimaVolta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrimaVolta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipologia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipologia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Localizzazione)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.Localizzazione)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Irradiazione)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.Irradiazione)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PeriodoInsorgenza)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.PeriodoInsorgenza)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Durata)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.Durata)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Familiarita)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.Familiarita)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AltreTerapie)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.AltreTerapie)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Varie)
+        </dt>       
+        <dd>
+            @Html.DisplayFor(model => model.Varie)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-idConsulto="@Model.ConsultoId">Edit</a> | 
+    <a asp-action="Delete" asp-route-idConsulto="@Model.ConsultoId">Delete</a> |
+    <a asp-controller="Consulti" asp-action="Details" asp-route-id="@Model.ConsultoId">Back to List</a>
+</div>

@@ -1,7 +1,4 @@
 ﻿@model Woa.Models.Paziente
-<div>       
-    <h4>Paziente</h4>
-    <hr />
     <dl class="dl-vertical">
         <dt>
             @Html.DisplayNameFor(model => model.Cognome)
@@ -53,9 +50,4 @@
             @Html.DisplayFor(model => model.Cellulare)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> | 
-    <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

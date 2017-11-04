@@ -24,21 +24,21 @@ namespace Woa.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Create(int? consultoId)
+        public async Task<IActionResult> Create(int? idConsulto)
         {
-            if (consultoId == null)
+            if (idConsulto == null)
             {
                 return NotFound();
             }
 
             var entity = await _context.Consulti
-                                       .SingleOrDefaultAsync(m => m.ID == consultoId);
+                                       .SingleOrDefaultAsync(m => m.ID == idConsulto);
             if (entity == null)
             {
                 return NotFound();
             }
 
-            var model = new AnamnesiProssima {PazienteId=entity.PazienteId, ConsultoId=consultoId.Value};
+            var model = new AnamnesiProssima {PazienteId=entity.PazienteId, ConsultoId=idConsulto.Value};
             return View(model);
         }
 
@@ -65,15 +65,33 @@ namespace Woa.Controllers
             return View(anamnesi);
         }
 
-        public async Task<IActionResult> Edit(int? consultoId)
+        public async Task<IActionResult> Details(int? idConsulto)
         {
-            if (consultoId == null)
+            if (idConsulto == null)
             {
                 return NotFound();
             }
 
             var entity = await _context.AnamnesiProssime
-                                       .SingleOrDefaultAsync(m=>m.ConsultoId==consultoId);
+                                       .SingleOrDefaultAsync(m => m.ConsultoId == idConsulto);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(entity);
+        }
+
+        public async Task<IActionResult> Edit(int? idConsulto)
+        {
+            if (idConsulto == null)
+            {
+                return NotFound();
+            }
+
+            var entity = await _context.AnamnesiProssime
+                                       .SingleOrDefaultAsync(m=>m.ConsultoId==idConsulto);
             if (entity == null)
             {
                 return NotFound();
@@ -87,15 +105,15 @@ namespace Woa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? consultoId)
+        public async Task<IActionResult> EditPost(int? idConsulto)
         {
-            if (consultoId == null)
+            if (idConsulto == null)
             {
                 return NotFound();
             }
             var modelToUpdate = await _context.AnamnesiProssime
                             .SingleOrDefaultAsync(
-                                m => m.ConsultoId == consultoId);
+                                                  m => m.ConsultoId == idConsulto);
             if (await TryUpdateModelAsync<AnamnesiProssima>(
                     modelToUpdate,
                     "",
@@ -118,7 +136,54 @@ namespace Woa.Controllers
             return View(modelToUpdate);
         }
 
+        public async Task<IActionResult> Delete(int? idConsulto, bool? saveChangesError = false)
+        {
+            if (idConsulto == null)
+            {
+                return NotFound();
+            }
 
+            var entity = await _context.AnamnesiProssime
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ConsultoId == idConsulto);
+            if (entity == null)
+            {
+                return NotFound();
+            }
 
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
+
+            return View(entity);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int idConsulto)
+        {
+            var entity = await _context.AnamnesiProssime
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ConsultoId == idConsulto);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _context.AnamnesiProssime.Remove(entity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Consulti", new { id = entity.ConsultoId });
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction(nameof(Delete), new { id = idConsulto, saveChangesError = true });
+            }
+        }
     }
 }

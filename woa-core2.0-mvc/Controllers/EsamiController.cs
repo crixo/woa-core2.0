@@ -175,14 +175,14 @@ namespace Woa.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (entity == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
 
             try
             {
                 _context.Esami.Remove(entity);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Consulti", new { id = entity.ConsultoId });
             }
             catch (DbUpdateException /* ex */)
             {

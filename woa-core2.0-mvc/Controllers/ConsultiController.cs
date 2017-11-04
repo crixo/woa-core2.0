@@ -113,7 +113,7 @@ namespace Woa.Controllers
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction("Details", "Pazienti", new { id = modelToUpdate.PazienteId });
+                    return RedirectToAction("Details", "Consulti", new { id = modelToUpdate.ID });
                 }
                 catch (DbUpdateException ex)
                 {
@@ -126,7 +126,55 @@ namespace Woa.Controllers
             return View(modelToUpdate);
         }
 
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var entity = await _context.Consulti
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
+
+            return View(entity);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var entity = await _context.Consulti
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _context.Consulti.Remove(entity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Pazienti", new { id = entity.PazienteId });
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
+        }
 
     }
 }

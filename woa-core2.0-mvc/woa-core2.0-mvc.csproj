@@ -25,7 +25,7 @@
     <Folder Include="Views\Utility\" />
     <Folder Include="Views\Shared\Components\Consulti\" />
     <Folder Include="Views\Consulti\" />
-    <Folder Include="Views\Shared\Components\Paziente\" />
+    <Folder Include="Views\Shared\Components\PazienteAnagrafica\" />
     <Folder Include="Views\AnamnesiProssima\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="Views\Esami\" />
@@ -36,5 +36,7 @@
     <Folder Include="Views\Shared\Components\AnamnesiProssima\" />
     <Folder Include="Views\Shared\Components\Trattamenti\" />
     <Folder Include="Views\Shared\Components\Valutazioni\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="Views\Shared\Components\PazienteHeader\" />
   </ItemGroup>
 </Project>

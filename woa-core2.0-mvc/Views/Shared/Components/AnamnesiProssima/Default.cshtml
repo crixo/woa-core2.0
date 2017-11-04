@@ -27,12 +27,12 @@
             <a condition="@Model==null" 
                 asp-controller="AnamnesiProssima" 
                 asp-action="Create" 
-                asp-route-consultoId="@ViewBag.ConsultoId">Create</a>
+                asp-route-idConsulto="@ViewBag.ConsultoId">Create</a>
 			
             <a condition="@Model!=null" 
 				asp-controller="AnamnesiProssima" 
-                asp-action="Edit" 
-                asp-route-consultoId="@ViewBag.ConsultoId">Edit</a> 			
+                asp-action="Details" 
+                asp-route-idConsulto="@ViewBag.ConsultoId">Details</a> 			
         </div>   	
     </div>      
 </div>

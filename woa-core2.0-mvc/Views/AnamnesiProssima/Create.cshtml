@@ -4,12 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h3>Anamnesi Prossima</h3>
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Anamnesi Prossima</h4>
-        <hr />
         <div asp-validation-summary="All" class="text-danger"></div>
         <input type="hidden" asp-for="PazienteId" />
         <input type="hidden" asp-for="ConsultoId" />
@@ -85,7 +83,7 @@
 </form>
 
 <div>
-    <a asp-controller="Consulti" asp-action="Details" asp-route-id="Model.ConsultoId">Back to List</a>
+    <a asp-controller="Consulti" asp-action="Details" asp-route-id="@Model.ConsultoId">Back to List</a>
 </div>
 
 @section Scripts {

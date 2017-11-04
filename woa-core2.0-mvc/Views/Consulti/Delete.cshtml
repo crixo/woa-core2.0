@@ -1,10 +1,10 @@
-﻿@model Woa.Models.Esame
+﻿@model Woa.Models.Consulto
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h3>Esame</h3>
+<h3>Consulto</h3>
 
 <div>
     <p class="text-danger">@ViewData["ConcurrencyErrorMessage"]</p>
@@ -17,18 +17,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Data)
-        </dd>
+        </dd>	
         <dt>
-            @Html.DisplayNameFor(model => model.Tipo)
+            @Html.DisplayNameFor(model => model.ProblemaIniziale)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Tipo.Descrizione)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </dt>       
-        <dd>
-            @Html.DisplayFor(model => model.Descrizione)
+            @Html.DisplayFor(model => model.ProblemaIniziale)
         </dd>
     </dl>
 </div>
@@ -36,6 +30,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="ID" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-controller="Consulti" asp-action="Details" asp-route-id="@Model.ConsultoId">Back to List</a>
+        <a asp-controller="Pazienti" asp-action="Details" asp-route-id="@Model.PazienteId">Back to List</a>
     </form>
 </div>

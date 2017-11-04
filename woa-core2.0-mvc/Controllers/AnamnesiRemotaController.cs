@@ -54,6 +54,24 @@ namespace Woa.Controllers
             return View(anamnesi);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var entity = await _context.AnamnesiRemote
+                                       .Include(x => x.Tipo)
+                                       .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            return View(entity);
+        }
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,7 +123,55 @@ namespace Woa.Controllers
             return View(modelToUpdate);
         }
 
+        public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var entity = await _context.AnamnesiRemote
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
+
+            return View(entity);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var entity = await _context.AnamnesiRemote
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ID == id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _context.AnamnesiRemote.Remove(entity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Details", "Pazienti", new { id = entity.PazienteId });
+            }
+            catch (DbUpdateException /* ex */)
+            {
+                //Log the error (uncomment ex variable name and write a log.)
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
+        }
 
     }
 }

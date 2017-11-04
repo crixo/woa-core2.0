@@ -10,12 +10,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Woa.ViewComponents
 {
-    [ViewComponent(Name = "Paziente")]
-    public class PazienteComponent : ViewComponent
+    [ViewComponent(Name = "PazienteHeader")]
+    public class PazienteHeaderComponent : ViewComponent
     {
+        public WoaContext _context;
+
+        public PazienteHeaderComponent(WoaContext context)
+        {
+            _context = context;
+        }
+
         public async Task<IViewComponentResult> InvokeAsync(int pazienteId)
         {
-            var model = new Paziente{ID = pazienteId};
+            var model = await _context.Pazienti.SingleOrDefaultAsync(m => m.ID == pazienteId);
             return View(model);
         }
     }
