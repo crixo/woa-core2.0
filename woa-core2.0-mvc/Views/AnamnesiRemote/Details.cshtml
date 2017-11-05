@@ -4,10 +4,14 @@
     ViewData["Title"] = "Details";
 }
 
+@section Paziente {
+    @await Component.InvokeAsync("PazienteHeader", new { pazienteId = Model.PazienteId })
+}
+
 <h3>Anamnesi Remota</h3>
 
-<div>
-    <dl class="dl-vertical">
+<div class="panel panel-default">
+    <dl class="dl-vertical panel-body">
         <dt>
             @Html.DisplayNameFor(model => model.Data)
         </dt>

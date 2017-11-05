@@ -26,7 +26,7 @@ namespace Woa.Controllers
 
         public async Task<IActionResult> Index(int pazienteId)
         {
-            var list = _context.Consulti
+            var list = await _context.Consulti
                                .Where(x => x.PazienteId == pazienteId)
                                .AsNoTracking()
                                .ToListAsync();

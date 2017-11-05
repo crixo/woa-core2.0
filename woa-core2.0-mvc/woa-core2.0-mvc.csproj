@@ -38,5 +38,6 @@
     <Folder Include="Views\Shared\Components\Valutazioni\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="Views\Shared\Components\PazienteHeader\" />
+    <Folder Include="Views\Shared\Components\ConsultoHeader\" />
   </ItemGroup>
 </Project>

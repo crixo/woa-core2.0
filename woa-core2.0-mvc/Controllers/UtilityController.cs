@@ -35,7 +35,48 @@ namespace Woa.Controllers
                 p.Professione = Replace(p.Professione);
             }
             _context.SaveChanges();
-            
+
+            foreach (var e in _context.AnamnesiRemote)
+            {
+                e.Descrizione = Replace(e.Descrizione);
+            }
+            _context.SaveChanges();
+
+            foreach (var e in _context.AnamnesiProssime)
+            {
+                e.PrimaVolta = Replace(e.PrimaVolta);
+                e.AltreTerapie = Replace(e.AltreTerapie);
+                e.Durata = Replace(e.Durata);
+                e.Familiarita = Replace(e.Familiarita);
+                e.Irradiazione = Replace(e.Irradiazione);
+                e.Localizzazione = Replace(e.Localizzazione);
+                e.PeriodoInsorgenza = Replace(e.PeriodoInsorgenza);
+                e.PrimaVolta = Replace(e.PrimaVolta);
+                e.Tipologia = Replace(e.Tipologia);
+                e.Varie = Replace(e.Varie);
+            }
+            _context.SaveChanges();
+
+            foreach (var e in _context.Esami)
+            {
+                e.Descrizione = Replace(e.Descrizione);
+            }
+            _context.SaveChanges();
+
+            foreach (var e in _context.Trattamenti)
+            {
+                e.Descrizione = Replace(e.Descrizione);
+            }
+            _context.SaveChanges();
+
+            foreach (var e in _context.Valutazioni)
+            {
+                e.AkOrtodontica = Replace(e.AkOrtodontica);
+                e.CranioSacrale = Replace(e.CranioSacrale);
+                e.Strutturale = Replace(e.Strutturale);
+            }
+            _context.SaveChanges();
+
             return View();
         }
 

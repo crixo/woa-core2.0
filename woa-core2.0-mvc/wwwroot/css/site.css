@@ -36,4 +36,19 @@
     }
 }
 
+l.nav li a.dinamic, ul.nav li a.dinamic:visited {
+    color: Khaki !important;
+}
+
+
+ul.nav li a.dinamic:hover, ul.nav li a.dinamic:active {
+    color: white !important;
+}
+
+
+ul.nav li.active a.dinamic {
+    color: Khaki !important;
+}
+
+input.date{width: 200px}
 

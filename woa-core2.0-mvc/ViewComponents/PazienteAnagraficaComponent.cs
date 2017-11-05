@@ -13,10 +13,10 @@ namespace Woa.ViewComponents
     [ViewComponent(Name = "PazienteAnagrafica")]
     public class PazienteAnagraficaComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(int pazienteId)
+        public Task<IViewComponentResult> InvokeAsync(int pazienteId)
         {
             var model = new Paziente{ID = pazienteId};
-            return View(model);
+            return Task.FromResult<IViewComponentResult>(View(model));
         }
     }
 }

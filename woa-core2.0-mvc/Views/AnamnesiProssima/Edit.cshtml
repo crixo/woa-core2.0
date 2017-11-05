@@ -4,7 +4,15 @@
     ViewData["Title"] = "Edit";
 }
 
-<h3>v</h3>
+@section Paziente {
+    @await Component.InvokeAsync("PazienteHeader", new { pazienteId = Model.PazienteId })
+}
+
+@section Consulto {
+    @await Component.InvokeAsync("ConsultoHeader", new { consultoId = Model.ConsultoId })
+}
+
+<h3>Anamnesi Prossima</h3>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
