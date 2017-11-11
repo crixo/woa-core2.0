@@ -71,7 +71,7 @@ namespace Woa
                     //    logging.AddConsole();
                     //    logging.AddDebug();
                     //})   
-                //.UseSerilog()
+                .UseSerilog()
                 .UseStartup<Startup>()
                 .Build();
     }
