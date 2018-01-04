@@ -1,0 +1,12 @@
+﻿version: "3"
+services:
+  web:
+    image: woa-core-mvc
+    container_name: woa-core-mvc
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8002:80"
+    volumes:
+      - "/Users/cristiano/Lavori/woa/woa-docker/woa-core-mvc:/woa"

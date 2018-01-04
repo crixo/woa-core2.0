@@ -1,4 +1,4 @@
-﻿docker build -t webprofessor/woa-core2.0-mvc:1.0 .
+docker build -t webprofessor/woa-core2.0-mvc:1.0 .
 docker run -it --rm -p 8000:80 -v C:/Temp/woa:/woa --name woa-core2.0-mvc_sample woa-core2.0-mvc
 docker run -p 8000:80 -v /Users/cristiano/Lavori/woa/woa-docker:/woa --restart=always --name woa-core2.0-mvc_sample woa-core2.0-mvc
 
@@ -45,3 +45,6 @@ Remove containers created before a specific container
 docker ps --before a1bz3768ez7g -q | xargs docker rm
 Use --rm for docker build
 Use --rm together with docker build to remove intermediary images during the build process.
+
+###Remove stopped containers
+docker container prune

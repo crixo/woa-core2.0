@@ -1,0 +1,10 @@
+﻿version: "3"
+services:
+  web:
+    image: cloud.canister.io:5000/crixo/woa-core-mvc:1.0
+    container_name: woa-core-mvc-canister
+    ports:
+      - "8020:80"
+    volumes:
+      - "/Users/cristiano/Lavori/woa/woa-docker/woa-core-mvc:/woa"
+    restart: always
